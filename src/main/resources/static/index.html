@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoScale - Video Processing Pipeline</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🎬 VideoScale</h1>
+        <p>Simple Video Processing Pipeline</p>
+    </header>
+
+    <main>
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="upload-box" id="uploadBox">
+                <div class="upload-icon">📤</div>
+                <p>Drag & drop your video here</p>
+                <p class="small">or click to browse</p>
+                <input type="file" id="fileInput" accept="video/*">
+            </div>
+            <button id="uploadBtn" disabled>Upload Video</button>
+            <div class="progress-bar" id="progressBar" style="display:none;">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="uploadStatus"></div>
+        </section>
+
+        <!-- Status Check Section -->
+        <section class="status-section">
+            <h2>Check Job Status</h2>
+            <div class="status-input">
+                <input type="text" id="jobIdInput" placeholder="Enter Job ID">
+                <button id="statusBtn">Check Status</button>
+            </div>
+            <div id="statusResult"></div>
+        </section>
+
+        <!-- Recent Jobs -->
+        <section class="recent-section">
+            <h2>Recent Jobs</h2>
+            <div id="recentJobs">
+                <p class="no-jobs">No jobs processed yet</p>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
