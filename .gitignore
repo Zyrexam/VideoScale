@@ -44,5 +44,13 @@ logs/
 postgres_data/
 minio_data/
 kafka_data/
+
+### Env ###
+# Local secrets / compose overrides — never commit
+.env
+
+### Merge leftovers ###
+*.orig
+*.rej
 *.pdf
 request-flow-diagram.png
