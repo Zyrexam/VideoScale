@@ -28,11 +28,12 @@ public class VideoConsumerService {
     private FfmpegService ffmpegService;
 
     @Autowired
-    private VideoJobRepository jobRepository;  // ← NEW
+    private VideoJobRepository jobRepository;
 
     @KafkaListener(
-            topics = "${kafka.topic.video-processing}",
-            groupId = "${spring.kafka.consumer.group-id}"
+            topics = "${spring.kafka.topic.video-processing}",
+            groupId = "${spring.kafka.consumer.group-id}",
+            ackMode = "MANUAL"
     )
     @Transactional
     public void consume(VideoJobMessage message, Acknowledgment acknowledgment) {

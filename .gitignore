@@ -31,3 +31,16 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+logs/
+
+### Docker ###
+postgres_data/
+minio_data/
+kafka_data/

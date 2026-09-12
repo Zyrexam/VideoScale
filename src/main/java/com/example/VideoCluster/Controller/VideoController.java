@@ -25,7 +25,7 @@ public class VideoController {
     private VideoStorageService storageService;
 
     @Autowired
-    private KafkaProducerService kafkaservice;
+    private KafkaProducerService kafkaProducerService;
 
     @Autowired
     private VideoJobRepository videoJobRepository;
@@ -52,7 +52,7 @@ public class VideoController {
             videoJobRepository.save(job);
 
             VideoJobMessage message = new VideoJobMessage(jobId, objectName, "user-123");
-            kafkaservice.sendJob(message);
+            kafkaProducerService.sendJob(message);
 
             return ResponseEntity.ok(new UploadResponse(
                     jobId,

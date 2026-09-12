@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark (default): ink page, paper text, sand accent */
+  --color-ink: #0b0f1a;
+  --color-ink-surface: #111827;
+  --color-ink-card: #1a1f2e;
+  --color-ink-hover: #222838;
+  --color-paper: #f4f1eb;
+  --color-paper-dim: #c8c2b8;
+  --color-paper-muted: #8a847a;
+  --color-sand: #c9944a;
+  --color-sand-light: #e0b878;
+  --color-line: rgb(255 255 255 / 0.08);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Light: paper page, ink text, deepened sand for contrast */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-ink: #f4f1eb;
+  --color-ink-surface: #e9e1cf;
+  --color-ink-card: #fffdf7;
+  --color-ink-hover: #ece3cf;
+  --color-paper: #1b1712;
+  --color-paper-dim: #4c463c;
+  --color-paper-muted: #877d6c;
+  --color-sand: #96690f;
+  --color-sand-light: #c9944a;
+  --color-line: rgb(27 23 18 / 0.14);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-sand);
+  color: var(--color-ink);
+}
+
+/* Keyboard focus: visible in both themes */
+:focus-visible {
+  outline: 2px solid var(--color-sand);
+  outline-offset: 2px;
+}
+
+/* Status badges + notices: fixed pairs per theme (Tailwind tints fail contrast in light) */
+.badge {
+  border-radius: 9999px;
+  padding: 0.15rem 0.65rem;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-completed { background: rgb(52 211 153 / 0.12); color: #6ee7b7; }
+.badge-failed { background: rgb(248 113 113 / 0.12); color: #fca5a5; }
+.badge-processing { background: rgb(96 165 250 / 0.12); color: #93c5fd; }
+.badge-pending { background: rgb(251 191 36 / 0.12); color: #fcd34d; }
+
+:root[data-theme="light"] .badge-completed { background: #dcfce7; color: #15803d; }
+:root[data-theme="light"] .badge-failed { background: #fee2e2; color: #b91c1c; }
+:root[data-theme="light"] .badge-processing { background: #dbeafe; color: #1d4ed8; }
+:root[data-theme="light"] .badge-pending { background: #fef3c7; color: #92400e; }
+
+.notice { margin-top: 0.75rem; text-align: center; font-size: 13px; font-weight: 500; }
+.notice-ok { color: #6ee7b7; }
+.notice-err { color: #fca5a5; }
+:root[data-theme="light"] .notice-ok { color: #15803d; }
+:root[data-theme="light"] .notice-err { color: #b91c1c; }
+
+.err-text { margin-top: 0.25rem; font-size: 12px; color: #fca5a5; }
+:root[data-theme="light"] .err-text { color: #b91c1c; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
