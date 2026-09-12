@@ -50,14 +50,14 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem("videocluster-recent");
+      const raw = localStorage.getItem("VideoScale-recent");
       if (raw) setRecent(JSON.parse(raw));
     } catch {}
   }, []);
 
   useEffect(() => {
     try {
-      localStorage.setItem("videocluster-recent", JSON.stringify(recent));
+      localStorage.setItem("VideoScale-recent", JSON.stringify(recent));
     } catch {}
   }, [recent]);
 
@@ -79,7 +79,7 @@ export default function Home() {
     setTheme(next);
     document.documentElement.dataset.theme = next;
     try {
-      localStorage.setItem("videocluster-theme", next);
+      localStorage.setItem("VideoScale-theme", next);
     } catch {}
   };
 
@@ -228,7 +228,7 @@ export default function Home() {
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sand to-sand-light text-xl font-bold text-[#0b0f1a] shadow-[0_8px_32px_rgba(201,148,74,0.25)]">
           V
         </div>
-        <h1 className="text-3xl font-bold tracking-tight">VideoCluster</h1>
+        <h1 className="text-3xl font-bold tracking-tight">VideoScale</h1>
         <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-paper-muted">
           Video Processing Pipeline
         </p>
@@ -396,7 +396,7 @@ export default function Home() {
 
       <footer className="mt-10 border-t border-line pt-5 text-center">
         <p className="text-xs text-paper-muted">
-          VideoCluster — Spring Boot API + Next.js UI
+          VideoScale — Spring Boot API + Next.js UI
         </p>
       </footer>
     </div>

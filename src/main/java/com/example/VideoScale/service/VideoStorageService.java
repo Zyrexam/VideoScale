@@ -1,4 +1,4 @@
-package com.example.VideoCluster.service;
+package com.example.VideoScale.service;
 
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;

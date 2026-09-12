@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VideoCluster — Video Processing Pipeline",
+  title: "VideoScale — Video Processing Pipeline",
   description: "Upload videos, track processing jobs in real time.",
 };
 
@@ -17,7 +17,7 @@ export default function RootLayout({
         {/* Set theme before paint: stored choice, else OS preference, else dark */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("videocluster-theme");if(!t){t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="dark"}})()`,
+            __html: `(function(){try{var t=localStorage.getItem("VideoScale-theme");if(!t){t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="dark"}})()`,
           }}
         />
       </head>

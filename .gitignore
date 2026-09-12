@@ -44,3 +44,5 @@ logs/
 postgres_data/
 minio_data/
 kafka_data/
+*.pdf
+request-flow-diagram.png

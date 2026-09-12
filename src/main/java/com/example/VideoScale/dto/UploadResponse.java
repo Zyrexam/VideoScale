@@ -1,4 +1,4 @@
-package com.example.VideoCluster.dto;
+package com.example.VideoScale.dto;
 
 public class UploadResponse {
 

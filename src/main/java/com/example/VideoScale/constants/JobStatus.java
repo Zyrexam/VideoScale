@@ -1,4 +1,4 @@
-package com.example.VideoCluster.constants;
+package com.example.VideoScale.constants;
 
 public class JobStatus {
     public static final String PENDING = "PENDING";

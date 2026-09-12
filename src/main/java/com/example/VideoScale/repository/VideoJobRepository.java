@@ -1,6 +1,6 @@
-package com.example.VideoCluster.repository;
+package com.example.VideoScale.repository;
 
-import com.example.VideoCluster.entity.VideoJob;
+import com.example.VideoScale.entity.VideoJob;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

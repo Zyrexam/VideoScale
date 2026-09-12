@@ -1,10 +1,10 @@
-package com.example.VideoCluster;
+package com.example.VideoScale;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VideoClusterApplicationTests {
+class VideoScaleApplicationTests {
 
 	@Test
 	void contextLoads() {

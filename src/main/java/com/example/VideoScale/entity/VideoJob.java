@@ -1,4 +1,4 @@
-package com.example.VideoCluster.entity;
+package com.example.VideoScale.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;

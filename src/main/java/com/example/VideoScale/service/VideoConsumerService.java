@@ -1,9 +1,9 @@
-package com.example.VideoCluster.service;
+package com.example.VideoScale.service;
 
-import com.example.VideoCluster.constants.JobStatus;
-import com.example.VideoCluster.dto.VideoJobMessage;
-import com.example.VideoCluster.entity.VideoJob;
-import com.example.VideoCluster.repository.VideoJobRepository;
+import com.example.VideoScale.constants.JobStatus;
+import com.example.VideoScale.dto.VideoJobMessage;
+import com.example.VideoScale.entity.VideoJob;
+import com.example.VideoScale.repository.VideoJobRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

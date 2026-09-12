@@ -1,13 +1,13 @@
-package com.example.VideoCluster.Controller;
+package com.example.VideoScale.Controller;
 
 import java.util.UUID;
 
-import com.example.VideoCluster.constants.JobStatus;
-import com.example.VideoCluster.dto.VideoJobMessage;
-import com.example.VideoCluster.entity.VideoJob;
-import com.example.VideoCluster.repository.VideoJobRepository;
-import com.example.VideoCluster.service.KafkaProducerService;
-import com.example.VideoCluster.service.VideoStorageService;
+import com.example.VideoScale.constants.JobStatus;
+import com.example.VideoScale.dto.VideoJobMessage;
+import com.example.VideoScale.entity.VideoJob;
+import com.example.VideoScale.repository.VideoJobRepository;
+import com.example.VideoScale.service.KafkaProducerService;
+import com.example.VideoScale.service.VideoStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.VideoCluster.dto.UploadResponse;
+import com.example.VideoScale.dto.UploadResponse;
 
 @RestController
 @RequestMapping("/api/videos")

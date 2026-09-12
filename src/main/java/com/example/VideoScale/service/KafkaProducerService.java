@@ -1,6 +1,6 @@
-package com.example.VideoCluster.service;
+package com.example.VideoScale.service;
 
-import com.example.VideoCluster.dto.VideoJobMessage;
+import com.example.VideoScale.dto.VideoJobMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;

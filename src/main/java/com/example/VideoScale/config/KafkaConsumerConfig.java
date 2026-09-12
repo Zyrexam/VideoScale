@@ -1,4 +1,4 @@
-package com.example.VideoCluster.config;
+package com.example.VideoScale.config;
 
 
 import org.springframework.context.annotation.Configuration;

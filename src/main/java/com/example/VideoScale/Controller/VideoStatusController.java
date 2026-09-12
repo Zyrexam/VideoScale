@@ -1,8 +1,8 @@
-package com.example.VideoCluster.Controller;
+package com.example.VideoScale.Controller;
 
 
-import com.example.VideoCluster.entity.VideoJob;
-import com.example.VideoCluster.repository.VideoJobRepository;
+import com.example.VideoScale.entity.VideoJob;
+import com.example.VideoScale.repository.VideoJobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
