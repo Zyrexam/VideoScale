@@ -8,6 +8,7 @@ import com.example.VideoScale.entity.VideoJob;
 import com.example.VideoScale.repository.VideoJobRepository;
 import com.example.VideoScale.service.KafkaProducerService;
 import com.example.VideoScale.service.VideoStorageService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +55,16 @@ public class VideoController {
             videoJobRepository.save(job);
 
             VideoJobMessage message = new VideoJobMessage(jobId, objectName, "user-123");
-            kafkaProducerService.sendJob(message);
+            try {
+                kafkaProducerService.sendJob(message);
+            } catch (Exception publishEx) {
+                job.setStatus(JobStatus.FAILED);
+                job.setErrorMessage("Failed to queue job: " + publishEx.getMessage());
+                job.setUpdatedAt(java.time.LocalDateTime.now());
+                videoJobRepository.save(job);
+                return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                        .body(new UploadResponse(jobId, "Failed: job could not be queued", "FAILED"));
+            }
 
             return ResponseEntity.ok(new UploadResponse(
                     jobId,
