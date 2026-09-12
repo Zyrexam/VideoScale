@@ -3,7 +3,6 @@ package com.example.VideoScale.Controller;
 
 import com.example.VideoScale.entity.VideoJob;
 import com.example.VideoScale.repository.VideoJobRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,11 @@ import java.util.Map;
 @RequestMapping("/api/videos")
 public class VideoStatusController {
 
-    @Autowired
-    private VideoJobRepository jobRepository;
+    private final VideoJobRepository jobRepository;
+
+    public VideoStatusController(VideoJobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
 
     @GetMapping("/status/{jobId}")
     public ResponseEntity<Map<String, Object>> getStatus(@PathVariable String jobId) {

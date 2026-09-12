@@ -8,7 +8,6 @@ import com.example.VideoScale.entity.VideoJob;
 import com.example.VideoScale.repository.VideoJobRepository;
 import com.example.VideoScale.service.KafkaProducerService;
 import com.example.VideoScale.service.VideoStorageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,17 +20,20 @@ import com.example.VideoScale.dto.UploadResponse;
 @RestController
 @RequestMapping("/api/videos")
 public class VideoController {
-    @Autowired
-    private VideoStorageService storageService;
+    private final VideoStorageService storageService;
+    private final KafkaProducerService kafkaProducerService;
+    private final VideoJobRepository videoJobRepository;
 
-    @Autowired
-    private KafkaProducerService kafkaProducerService;
-
-    @Autowired
-    private VideoJobRepository videoJobRepository;
+    public VideoController(VideoStorageService storageService,
+                           KafkaProducerService kafkaProducerService,
+                           VideoJobRepository videoJobRepository) {
+        this.storageService = storageService;
+        this.kafkaProducerService = kafkaProducerService;
+        this.videoJobRepository = videoJobRepository;
+    }
 
     @PostMapping("/upload")
-    public ResponseEntity<UploadResponse> uploadVideo(@RequestParam("video") MultipartFile file) throws Exception {
+    public ResponseEntity<UploadResponse> uploadVideo(@RequestParam("video") MultipartFile file) {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest()
                     .body(new UploadResponse(null, "File is empty", "FAILED"));

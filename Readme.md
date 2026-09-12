@@ -17,7 +17,6 @@ Upload a video → get back a job ID → worker transcodes it in the background 
 
 ![VideoScale distributed pipeline components](docs/component-diagram.png)
 
-([PDF version](docs/component-diagram.pdf))
 
 Spring Boot app (VideoController, VideoStatusController, VideoStorageService,
 KafkaProducerService, VideoConsumerService, FfmpegService) against Docker
@@ -120,7 +119,6 @@ The UI calls the backend directly (the Next.js dev proxy truncates bodies over 1
 
 ![VideoScale upload & processing sequence](docs/sequence-diagram.png)
 
-([PDF version](docs/sequence-diagram.pdf))
 
 Covers the three phases across VideoController, VideoStorage, MinIO, PostgreSQL,
 KafkaProducer, Kafka, VideoConsumer, and FFmpeg: **1. Upload** (store → save

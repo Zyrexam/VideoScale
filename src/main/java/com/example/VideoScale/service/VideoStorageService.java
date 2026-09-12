@@ -4,7 +4,6 @@ import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.UploadObjectArgs;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,11 +17,14 @@ import java.util.UUID;
 @Service
 public class VideoStorageService {
 
-    @Autowired
-    private MinioClient minioClient;
+    private final MinioClient minioClient;
+    private final String bucketName;
 
-    @Value("${minio.bucket-name}")
-    private String bucketName;
+    public VideoStorageService(MinioClient minioClient,
+                               @Value("${minio.bucket-name}") String bucketName) {
+        this.minioClient = minioClient;
+        this.bucketName = bucketName;
+    }
 
     public String storeVideo(MultipartFile file) throws Exception {
 

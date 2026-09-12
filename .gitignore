@@ -52,5 +52,9 @@ kafka_data/
 ### Merge leftovers ###
 *.orig
 *.rej
+
+### Personal drafts — local only, never push ###
+docs/no-more-autowired.md
+docs/building-videoscale.md
 *.pdf
 request-flow-diagram.png

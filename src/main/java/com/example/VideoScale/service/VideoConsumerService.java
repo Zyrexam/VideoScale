@@ -6,7 +6,6 @@ import com.example.VideoScale.entity.VideoJob;
 import com.example.VideoScale.repository.VideoJobRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
@@ -21,14 +20,17 @@ public class VideoConsumerService {
 
     private static final Logger logger = LoggerFactory.getLogger(VideoConsumerService.class);
 
-    @Autowired
-    private VideoStorageService storageService;
+    private final VideoStorageService storageService;
+    private final FfmpegService ffmpegService;
+    private final VideoJobRepository jobRepository;
 
-    @Autowired
-    private FfmpegService ffmpegService;
-
-    @Autowired
-    private VideoJobRepository jobRepository;
+    public VideoConsumerService(VideoStorageService storageService,
+                                FfmpegService ffmpegService,
+                                VideoJobRepository jobRepository) {
+        this.storageService = storageService;
+        this.ffmpegService = ffmpegService;
+        this.jobRepository = jobRepository;
+    }
 
     @KafkaListener(
             topics = "${spring.kafka.topic.video-processing}",
