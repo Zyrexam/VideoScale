@@ -41,6 +41,12 @@ public class VideoConsumerService {
     public void consume(VideoJobMessage message, Acknowledgment acknowledgment) {
         String jobId = message.getJobId();
 
+        // Declared outside try so finally can reach them
+        Path tempDir = null;
+        Path inputPath = null;
+        Path output720p = null;
+        Path output360p = null;
+
         try {
             logger.info("Starting job: {}", jobId);
 
@@ -49,16 +55,16 @@ public class VideoConsumerService {
 
             // 2. Download from MinIO
             String objectName = message.getObjectName();
-            Path tempDir = Paths.get("/tmp/videoscale/" + jobId);
+            tempDir = Paths.get("/tmp/videoscale/" + jobId);
             Files.createDirectories(tempDir);
-            Path inputPath = tempDir.resolve(objectName);
+            inputPath = tempDir.resolve(objectName);
 
             logger.info("Downloading: {}", objectName);
             storageService.downloadVideo(objectName, inputPath);
 
             // 3. Transcode
-            Path output720p = tempDir.resolve("output_720p.mp4");
-            Path output360p = tempDir.resolve("output_360p.mp4");
+            output720p = tempDir.resolve("output_720p.mp4");
+            output360p = tempDir.resolve("output_360p.mp4");
 
             logger.info("Transcoding to 720p");
             ffmpegService.transcodeVideo(inputPath, output720p, "1280:720");
@@ -76,13 +82,7 @@ public class VideoConsumerService {
             // 5. Update status to COMPLETED
             updateJobStatus(jobId, JobStatus.COMPLETED, null);
 
-            // 6. Cleanup
-            Files.deleteIfExists(inputPath);
-            Files.deleteIfExists(output720p);
-            Files.deleteIfExists(output360p);
-            Files.deleteIfExists(tempDir);
-
-            // 7. Acknowledge Kafka
+            // 6. Acknowledge Kafka
             acknowledgment.acknowledge();
             logger.info("Job completed: {}", jobId);
 
@@ -94,6 +94,17 @@ public class VideoConsumerService {
 
             // Don't acknowledge → Kafka will retry
             // We should add retry limits later
+        } finally {
+            // Cleanup temp files on success AND failure — never let a
+            // cleanup failure mask the real outcome or skip the ack
+            for (Path p : new Path[]{inputPath, output720p, output360p, tempDir}) {
+                if (p == null) continue;
+                try {
+                    Files.deleteIfExists(p);
+                } catch (Exception cleanupEx) {
+                    logger.warn("Temp cleanup failed for job: {}", jobId, cleanupEx);
+                }
+            }
         }
     }
 
